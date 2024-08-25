@@ -22,7 +22,7 @@ class StockViewModel(private val repository: StockRepository) : ViewModel() {
                         StockState.Error("No stocks available")
                     }
                 }
-                .catch { e -> // Handle any errors during data emission
+                .catch { e ->
                     _state.value = StockState.Error("Error fetching stocks: ${e.message}")
                 }
                 .collect { stockState ->
