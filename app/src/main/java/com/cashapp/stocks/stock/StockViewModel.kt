@@ -15,7 +15,8 @@ class StockViewModel(private val repository: StockRepository) : ViewModel() {
     fun fetchStocks() {
         viewModelScope.launch {
             repository.getStockData()
-                .map { stocks ->
+                .map { response ->
+                    val stocks = response.stocks
                     if (stocks.isNotEmpty()) {
                         StockState.Success(stocks)
                     } else {

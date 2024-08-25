@@ -15,7 +15,7 @@ data class Stock(
     val currency: String,
 
     @SerialName("current_price_cents")
-    val currentPriceCents: Int,
+    val currentPriceCents: Long,
 
     @SerialName("quantity")
     val quantity: Int? = null,
@@ -24,6 +24,13 @@ data class Stock(
     val currentPriceTimestamp: Long
 ) {
     fun getFormattedPrice(): String {
+        println("$currentPriceCents")
         return "$${currentPriceCents / 100}.${currentPriceCents % 100}"
     }
 }
+
+@Serializable
+data class StockResponse(
+    @SerialName("stocks")
+    val stocks: List<Stock>
+)

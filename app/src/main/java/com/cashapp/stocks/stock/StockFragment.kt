@@ -13,6 +13,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import com.cashapp.stocks.databinding.StockFragmentBinding
+import com.cashapp.stocks.stock.adapter.StockAdapter
 import com.cashapp.stocks.stock.api.StockRepositoryImpl
 import com.cashapp.stocks.stock.api.StockState
 import kotlinx.coroutines.CoroutineScope
@@ -52,7 +53,7 @@ class StockFragment: Fragment() {
                     when (it) {
                         is StockState.Success -> {
                             binding.stockProgressBar.visibility = View.GONE
-                            it.stock
+                            binding.stockRecyclerView.adapter = StockAdapter(it.stock)
                         }
                         is StockState.Error -> {
                             CoroutineScope(Dispatchers.Main).launch {
@@ -60,7 +61,6 @@ class StockFragment: Fragment() {
                                     .setMessage(it.message)
                                     .setTitle("Error")
                                 val dialog: AlertDialog = builder.create()
-
                                 dialog.show()
                             }
                         }
