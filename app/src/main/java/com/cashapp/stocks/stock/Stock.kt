@@ -1,36 +1,39 @@
 package com.cashapp.stocks.stock
 
-import kotlinx.serialization.SerialName
+import com.google.gson.annotations.SerializedName
 import kotlinx.serialization.Serializable
 
 @Serializable
 data class Stock(
-    @SerialName("ticker")
+    @SerializedName("ticker")
     val ticker: String,
 
-    @SerialName("name")
+    @SerializedName("name")
     val name: String,
 
-    @SerialName("currency")
+    @SerializedName("currency")
     val currency: String,
 
-    @SerialName("current_price_cents")
-    val currentPriceCents: Long,
+    @SerializedName("current_price_cents")
+    val currentPriceCents: Int,
 
-    @SerialName("quantity")
+    @SerializedName("quantity")
     val quantity: Int? = null,
 
-    @SerialName("current_price_timestamp")
-    val currentPriceTimestamp: Long
+    @SerializedName("current_price_timestamp")
+    val currentPriceTimestamp: Int
 ) {
     fun getFormattedPrice(): String {
-        println("$currentPriceCents")
-        return "$${currentPriceCents / 100}.${currentPriceCents % 100}"
+        val sign = when (currency) {
+            "USD" -> "$"
+            else -> "€"
+        }
+        return "$sign${currentPriceCents / 100}.${currentPriceCents % 100}"
     }
 }
 
 @Serializable
 data class StockResponse(
-    @SerialName("stocks")
+    @SerializedName("stocks")
     val stocks: List<Stock>
 )

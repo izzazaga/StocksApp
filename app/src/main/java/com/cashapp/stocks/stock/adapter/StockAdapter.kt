@@ -8,13 +8,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.cashapp.stocks.R
 import com.cashapp.stocks.stock.Stock
 
-class StockAdapter(private val data: List<Stock>) :
+class StockAdapter(private val data: List<Stock>, private val clickListener: (Stock) -> Unit) :
     RecyclerView.Adapter<StockAdapter.ViewHolder>() {
 
-    /**
-     * Provide a reference to the type of views that you are using
-     * (custom ViewHolder)
-     */
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val tickerView: TextView = view.findViewById(R.id.stock_ticker)
         val textView: TextView = view.findViewById(R.id.stock_name)
@@ -32,6 +28,9 @@ class StockAdapter(private val data: List<Stock>) :
         viewHolder.tickerView.text = data[position].ticker
         viewHolder.textView.text = data[position].name
         viewHolder.priceView.text = data[position].getFormattedPrice()
+        viewHolder.itemView.setOnClickListener {
+            clickListener(data[position])
+        }
     }
 
     override fun getItemCount() = data.size

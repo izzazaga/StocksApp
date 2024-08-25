@@ -16,12 +16,20 @@ class StockRepositoryImpl(application: Application) : StockRepository {
             val networkStocks = stockApi.getStockData()
             emit(networkStocks)
         } catch (e: Exception) {
-            println("jjLog ${e.message}")
             emit(StockResponse(emptyList()))
         }
     }
 
     override fun getMalformedStockData(): Flow<StockResponse> = flow {
+        try {
+            val networkStocks = stockApi.getStockData()
+            emit(networkStocks)
+        } catch (e: Exception) {
+            emit(StockResponse(emptyList()))
+        }
+    }
+
+    override fun getEmptyStockData(): Flow<StockResponse> = flow {
         try {
             val networkStocks = stockApi.getStockData()
             emit(networkStocks)

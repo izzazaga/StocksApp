@@ -11,6 +11,7 @@ class StockViewModel(private val repository: StockRepository) : ViewModel() {
 
     private val _state = MutableStateFlow<StockState>(StockState.Loading)
     val state: StateFlow<StockState> get() = _state.asStateFlow()
+    private var selectedStock: String = ""
 
     fun fetchStocks() {
         viewModelScope.launch {
@@ -30,5 +31,9 @@ class StockViewModel(private val repository: StockRepository) : ViewModel() {
                     _state.value = stockState
                 }
         }
+    }
+
+    fun updateSelectedStock(stock: Stock) {
+        selectedStock = stock.ticker
     }
 }

@@ -1,9 +1,23 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Base.Theme.Stocks" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+    <style name="Base.Theme.Stocks" parent="Theme.Material3.DayNight.NoActionBar"/>
+
+    <!-- Application theme. -->
+    <style name="Theme.Stocks" parent="Base.Theme.Stocks">
+        <item name="android:textColor">@color/dark_text</item>
+        <item name="android:fontFamily">sans-serif-light</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:ellipsize">end</item>
     </style>
 
-    <style name="Theme.Stocks" parent="Base.Theme.Stocks" />
+    <style name="TextTitle" parent="Base.Theme.Stocks">
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">@dimen/large_text_size</item>
+        <item name="android:gravity">center_horizontal</item>
+    </style>
+
+    <style name="TextBody" parent="Base.Theme.Stocks">
+        <item name="android:textSize">@dimen/medium_text_size</item>
+    </style>
+
 </resources>

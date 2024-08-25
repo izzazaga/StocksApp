@@ -4,6 +4,7 @@
     android:layout_height="wrap_content"
     app:cardCornerRadius="@dimen/small_block"
     android:layout_margin="@dimen/xsmall_block"
+    android:backgroundTint="@color/light_background"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <LinearLayout
@@ -14,24 +15,22 @@
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/stock_ticker"
+            style="@style/TextTitle"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="@dimen/large_text_size"/>
+            android:layout_height="wrap_content"/>
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/stock_name"
+            style="@style/TextBody"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toTopOf="parent"
-            android:maxLines="1"
-            android:ellipsize="end"
-            android:textSize="@dimen/medium_text_size"/>
+            app:layout_constraintTop_toTopOf="parent"/>
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/stock_price"
+            style="@style/TextBody"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="@dimen/medium_text_size"/>
+            android:layout_height="wrap_content"/>
 
     </LinearLayout>
 </androidx.cardview.widget.CardView>

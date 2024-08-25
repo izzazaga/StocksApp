@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
@@ -53,16 +54,14 @@ class StockFragment: Fragment() {
                     when (it) {
                         is StockState.Success -> {
                             binding.stockProgressBar.visibility = View.GONE
-                            binding.stockRecyclerView.adapter = StockAdapter(it.stock)
+                            binding.stockRecyclerView.adapter = StockAdapter(it.stock) { stock ->
+                                viewModel.updateSelectedStock(stock)
+                                showToast(stock)
+                            }
                         }
                         is StockState.Error -> {
-                            CoroutineScope(Dispatchers.Main).launch {
-                                val builder: AlertDialog.Builder = AlertDialog.Builder(context)
-                                    .setMessage(it.message)
-                                    .setTitle("Error")
-                                val dialog: AlertDialog = builder.create()
-                                dialog.show()
-                            }
+                            binding.stockProgressBar.visibility = View.GONE
+                            showErrorDialog(it)
                         }
                         StockState.Loading -> {
                             binding.stockProgressBar.visibility = View.VISIBLE
@@ -70,6 +69,24 @@ class StockFragment: Fragment() {
                     }
                 }
             }
+        }
+    }
+
+    private fun showToast(stock: Stock) {
+        Toast.makeText(
+            context,
+            "Clicked: ${stock.name}",
+            Toast.LENGTH_SHORT
+        ).show()
+    }
+
+    private fun showErrorDialog(error: StockState.Error) {
+        CoroutineScope(Dispatchers.Main).launch {
+            val builder: AlertDialog.Builder = AlertDialog.Builder(context)
+                .setMessage(error.message)
+                .setTitle("Error")
+            val dialog: AlertDialog = builder.create()
+            dialog.show()
         }
     }
 }

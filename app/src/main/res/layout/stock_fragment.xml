@@ -5,14 +5,26 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/stock_recycler_view"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        android:orientation="vertical"
-        android:layout_margin="20dp"
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/stock_list"
+        style="@style/TextTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:paddingVertical="@dimen/medium_block"
         app:layout_constraintTop_toTopOf="parent"
+        android:text="@string/all_stocks"
+        />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/stock_recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/no_block"
+        android:layout_marginHorizontal="@dimen/xlarge_block"
+        android:paddingBottom="@dimen/xlarge_block"
+        android:orientation="vertical"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintTop_toBottomOf="@id/stock_list"
+        app:layout_constraintBottom_toBottomOf="parent"
         tools:listitem="@layout/stock_recycler_view_item"
         tools:itemCount="5" />
 

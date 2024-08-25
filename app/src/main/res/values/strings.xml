@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Stocks</string>
+    <string name="all_stocks">All Stocks</string>
 </resources>

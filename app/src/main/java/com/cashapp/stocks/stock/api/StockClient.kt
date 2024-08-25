@@ -9,7 +9,7 @@ object StockClient {
     val stockApi: StockApi by lazy {
         Retrofit.Builder()
             .baseUrl(BASE_URL)
-            .addConverterFactory(GsonConverterFactory.create()) // Use Gson for JSON parsing
+            .addConverterFactory(GsonConverterFactory.create())
             .build()
             .create(StockApi::class.java)
     }
