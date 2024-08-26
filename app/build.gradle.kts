@@ -54,6 +54,7 @@ dependencies {
     implementation(libs.androidx.lifecycle.extensions)
     implementation(libs.androidx.fragment.ktx)
     implementation(libs.androidx.monitor)
+    implementation(libs.androidx.swiperefreshlayout)
     testImplementation(libs.junit)
     testImplementation("org.junit.jupiter:junit-jupiter-api:5.11.0")
     testImplementation("androidx.arch.core:core-testing:2.2.0")

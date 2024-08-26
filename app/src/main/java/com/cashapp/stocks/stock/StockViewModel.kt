@@ -14,6 +14,7 @@ class StockViewModel(private val repository: StockRepository) : ViewModel() {
     var selectedStock: Stock? = null
 
     fun fetchStocks() {
+        _state.value = StockState.Loading
         viewModelScope.launch {
             repository.getStockData()
                 .map { response ->

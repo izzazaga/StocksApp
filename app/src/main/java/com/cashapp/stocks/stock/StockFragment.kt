@@ -55,6 +55,7 @@ class StockFragment: Fragment() {
                 viewModel.state.collect {
                     when (it) {
                         is StockState.Success -> {
+                            binding.refreshLayout.isRefreshing = false
                             binding.stockProgressBar.visibility = View.GONE
                             binding.stockRecyclerView.adapter = StockAdapter(it.stock) { stock ->
                                 viewModel.updateSelectedStock(stock)
@@ -62,6 +63,7 @@ class StockFragment: Fragment() {
                             }
                         }
                         is StockState.Error -> {
+                            binding.refreshLayout.isRefreshing = false
                             binding.stockProgressBar.visibility = View.GONE
                             showErrorDialog(it)
                         }
@@ -71,6 +73,10 @@ class StockFragment: Fragment() {
                     }
                 }
             }
+        }
+        binding.refreshLayout.setOnRefreshListener {
+            viewModel.fetchStocks()
+
         }
     }
 
