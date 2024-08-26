@@ -58,8 +58,8 @@ This is a simple stocks app demonstrating modern Android development best practi
 
 5. **Running Tests:**
 - Go to the test directory under src.
-- Right-click on a test class (e.g., StockViewModelTest) and select Run 'Tests in ...'.
-- You can also run all tests from the top menu via Run > Run... > All Tests.
+- Right-click on a test class (e.g., StockViewModelTest) and select 'Run test name'.
+- You can also run all tests by right-clicking the tests folder in the file viewer and select 'Run Tests in 'folder name'.
 
 ## Next Steps
 
