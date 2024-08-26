@@ -4,6 +4,7 @@ import com.google.gson.annotations.SerializedName
 import kotlinx.serialization.Serializable
 import java.text.SimpleDateFormat
 import java.util.Date
+import java.util.Locale
 
 @Serializable
 data class Stock(
@@ -46,7 +47,7 @@ data class Stock(
 
     fun getDateFormatted(): String {
         val date = Date(currentPriceTimestamp)
-        val format = SimpleDateFormat("yyyy/MM/dd HH:mm")
+        val format = SimpleDateFormat("yyyy/MM/dd HH:mm", Locale.getDefault())
         return format.format(date)
     }
 
