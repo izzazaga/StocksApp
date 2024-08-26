@@ -11,14 +11,14 @@ class StockViewModel(private val repository: StockRepository) : ViewModel() {
 
     private val _state = MutableStateFlow<StockState>(StockState.Loading)
     val state: StateFlow<StockState> get() = _state.asStateFlow()
-    private var selectedStock: String = ""
+    var selectedStock: Stock? = null
 
     fun fetchStocks() {
         viewModelScope.launch {
             repository.getStockData()
                 .map { response ->
-                    val stocks = response.stocks
-                    if (stocks.isNotEmpty()) {
+                    val stocks = response?.stocks
+                    if (!stocks.isNullOrEmpty()) {
                         StockState.Success(stocks)
                     } else {
                         StockState.Error("No stocks available")
@@ -34,6 +34,6 @@ class StockViewModel(private val repository: StockRepository) : ViewModel() {
     }
 
     fun updateSelectedStock(stock: Stock) {
-        selectedStock = stock.ticker
+        selectedStock = stock
     }
 }

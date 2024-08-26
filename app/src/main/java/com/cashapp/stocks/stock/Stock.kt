@@ -12,16 +12,16 @@ data class Stock(
     val name: String,
 
     @SerializedName("currency")
-    val currency: String,
+    val currency: String = "USD",
 
     @SerializedName("current_price_cents")
-    val currentPriceCents: Int,
+    val currentPriceCents: Int = 0,
 
     @SerializedName("quantity")
     val quantity: Int? = null,
 
     @SerializedName("current_price_timestamp")
-    val currentPriceTimestamp: Int
+    val currentPriceTimestamp: Int = 0
 ) {
     fun getFormattedPrice(): String {
         val sign = when (currency) {

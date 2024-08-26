@@ -11,30 +11,30 @@ class StockRepositoryImpl(application: Application) : StockRepository {
 
     private val stockApi = (application as App).stockApi
 
-    override fun getStockData(): Flow<StockResponse> = flow {
+    override fun getStockData(): Flow<StockResponse?> = flow {
         try {
             val networkStocks = stockApi.getStockData()
             emit(networkStocks)
         } catch (e: Exception) {
-            emit(StockResponse(emptyList()))
+            emit(null)
         }
     }
 
-    override fun getMalformedStockData(): Flow<StockResponse> = flow {
+    override fun getMalformedStockData(): Flow<StockResponse?> = flow {
         try {
             val networkStocks = stockApi.getStockData()
             emit(networkStocks)
         } catch (e: Exception) {
-            emit(StockResponse(emptyList()))
+            emit(null)
         }
     }
 
-    override fun getEmptyStockData(): Flow<StockResponse> = flow {
+    override fun getEmptyStockData(): Flow<StockResponse?> = flow {
         try {
             val networkStocks = stockApi.getStockData()
             emit(networkStocks)
         } catch (e: Exception) {
-            emit(StockResponse(emptyList()))
+            emit(null)
         }
     }
 }
