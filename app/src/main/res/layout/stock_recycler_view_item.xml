@@ -1,36 +1,81 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    app:cardCornerRadius="@dimen/small_block"
     android:layout_margin="@dimen/xsmall_block"
     android:backgroundTint="@color/light_background"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    app:cardCornerRadius="@dimen/small_block">
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="@dimen/medium_block"
+        android:paddingHorizontal="@dimen/medium_block"
         android:orientation="vertical">
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/stock_ticker"
             style="@style/TextTitle"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="INTL"/>
+
+        <View
+            android:id="@+id/divider"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="?android:attr/listDivider"
+            app:layout_constraintTop_toBottomOf="@id/stock_ticker" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/stock_name"
             style="@style/TextBody"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toTopOf="parent"/>
+            app:layout_constraintTop_toBottomOf="@id/divider"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="@id/stock_guideline"
+            tools:text="INTEL"/>
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/stock_price"
             style="@style/TextBody"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/stock_name"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="@id/stock_guideline"
+            tools:text="Price: $12.34"/>
 
-    </LinearLayout>
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/stock_guideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.50"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/stock_total_value"
+            style="@style/TextStock"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintTop_toTopOf="@id/stock_name"
+            app:layout_constraintBottom_toBottomOf="@id/stock_price"
+            app:layout_constraintStart_toStartOf="@id/stock_guideline"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:text="$9999.99"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/stock_date"
+            style="@style/TextFooter"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/stock_price"
+            app:layout_constraintBottom_toBottomOf="parent"
+            tools:text="@string/stock_price_date"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
 </androidx.cardview.widget.CardView>

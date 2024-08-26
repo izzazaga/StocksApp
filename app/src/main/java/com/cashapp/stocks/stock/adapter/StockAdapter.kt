@@ -15,6 +15,8 @@ class StockAdapter(private val data: List<Stock>, private val clickListener: (St
         val tickerView: TextView = view.findViewById(R.id.stock_ticker)
         val textView: TextView = view.findViewById(R.id.stock_name)
         val priceView: TextView = view.findViewById(R.id.stock_price)
+        val totalValueView: TextView = view.findViewById(R.id.stock_total_value)
+        val dateDisclaimerView: TextView = view.findViewById(R.id.stock_date)
     }
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): ViewHolder {
@@ -24,15 +26,28 @@ class StockAdapter(private val data: List<Stock>, private val clickListener: (St
         return ViewHolder(view)
     }
 
+    override fun getItemCount() = data.size
+
     override fun onBindViewHolder(viewHolder: ViewHolder, position: Int) {
         viewHolder.tickerView.text = data[position].ticker
         viewHolder.textView.text = data[position].name
-        viewHolder.priceView.text = data[position].getFormattedPrice()
+        viewHolder.priceView.text = getFormattedPrice(viewHolder, position)
+        viewHolder.totalValueView.text = data[position].getTotalStockValue()
+        viewHolder.dateDisclaimerView.text = getFormattedDate(viewHolder, position)
         viewHolder.itemView.setOnClickListener {
             clickListener(data[position])
         }
     }
 
-    override fun getItemCount() = data.size
+    private fun getFormattedPrice(viewHolder: ViewHolder, position: Int) =
+        viewHolder.itemView.resources.getString(
+            R.string.stock_current_price,
+            data[position].getFormattedPrice()
+        )
 
+    private fun getFormattedDate(viewHolder: ViewHolder, position: Int) =
+        viewHolder.itemView.resources.getString(
+            R.string.stock_price_date,
+            data[position].getDateFormatted()
+        )
 }
