@@ -49,7 +49,7 @@ class StockRepositoryImplTest {
     @Test
     fun `getMalformedStockData returns failure for malformed data`() = runTest {
         // Given: The API returns a response that causes a parsing error
-        coEvery { stockApi.getStockData() } throws IOException("Malformed data")
+        coEvery { stockApi.getMalformedStockData() } throws IOException("Malformed data")
 
         // When: The repository fetches the stock data
         val response = repository.getMalformedStockData()
@@ -64,7 +64,7 @@ class StockRepositoryImplTest {
     fun `getEmptyStockData returns empty list when no stocks are available`() = runTest {
         // Given: The API returns an empty list
         val emptyStockResponse = StockResponse(emptyList())
-        coEvery { stockApi.getStockData() } returns emptyStockResponse
+        coEvery { stockApi.getEmptyStockData() } returns emptyStockResponse
 
         // When: The repository fetches the stock data
         val response = repository.getEmptyStockData()
