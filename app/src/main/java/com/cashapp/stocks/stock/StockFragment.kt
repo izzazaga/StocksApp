@@ -13,8 +13,10 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import com.cashapp.stocks.R
 import com.cashapp.stocks.databinding.StockFragmentBinding
 import com.cashapp.stocks.stock.adapter.StockAdapter
+import com.cashapp.stocks.stock.adapter.StockAdapter.ViewHolder
 import com.cashapp.stocks.stock.api.StockRepositoryImpl
 import com.cashapp.stocks.stock.api.StockState
 import kotlinx.coroutines.CoroutineScope
@@ -75,16 +77,22 @@ class StockFragment: Fragment() {
     private fun showToast(stock: Stock) {
         Toast.makeText(
             context,
-            "Clicked: ${stock.name}",
+            getClickedStockMessage(stock.name),
             Toast.LENGTH_SHORT
         ).show()
     }
+
+    private fun getClickedStockMessage(stock: String) =
+        resources.getString(
+            R.string.stock_current_price,
+            stock
+        )
 
     private fun showErrorDialog(error: StockState.Error) {
         CoroutineScope(Dispatchers.Main).launch {
             val builder: AlertDialog.Builder = AlertDialog.Builder(context)
                 .setMessage(error.message)
-                .setTitle("Error")
+                .setTitle(resources.getString(R.string.error))
             val dialog: AlertDialog = builder.create()
             dialog.show()
         }

@@ -3,4 +3,6 @@
     <string name="all_stocks">All Stocks</string>
     <string name="stock_current_price">Current Price: %s</string>
     <string name="stock_price_date">Price valid as of %s</string>
+    <string name="stock_clicked">Clicked: %s</string>
+    <string name="error">Error</string>
 </resources>
