@@ -35,13 +35,13 @@ data class Stock(
         }
     }
 
+    private fun getSign() = when (currency) {
+        "USD" -> "$"
+        else -> "€"
+    }
 
     fun getFormattedPrice(): String {
-        val sign = when (currency) {
-            "USD" -> "$"
-            else -> "€"
-        }
-        return "$sign${formatPrice(currentPriceCents)}"
+        return "${getSign()}${formatPrice(currentPriceCents)}"
     }
 
     fun getDateFormatted(): String {
@@ -51,14 +51,10 @@ data class Stock(
     }
 
     fun getTotalStockValue(): String {
-        val sign = when (currency) {
-            "USD" -> "$"
-            else -> "€"
-        }
         return if (quantity == null) {
             ""
         } else {
-            "$sign${formatPrice(quantity * currentPriceCents)}"
+            "${getSign()}${formatPrice(quantity * currentPriceCents)}"
         }
     }
 }
