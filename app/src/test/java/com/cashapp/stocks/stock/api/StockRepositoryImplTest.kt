@@ -16,7 +16,7 @@ import java.io.IOException
 
 class StockRepositoryImplTest {
     private lateinit var repository: StockRepositoryImpl
-    private val app: App = mockk<App>()
+    private val app: App = mockk()
     private val stockApi: StockApi = mockk()
 
     @Before
