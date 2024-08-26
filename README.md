@@ -85,4 +85,9 @@ To enhance the functionality and maintainability of the app, the following impro
     - Create a new screen with detailed stock information, fetching additional data as needed.
     - Update the `ViewModel` to manage the state of the detailed screen and handle any relevant business logic.
 
-These improvements would not only extend the app’s functionality but also ensure it remains scalable and maintainable as more features are added.
+## Time Spent
+
+The total time spent on this project was approximately **4.5 hours**, broken down as follows:
+
+- **1 hour**: Planning the architecture and design decisions. This included deciding on the use of MVVM, coroutines, and the repository pattern, as well as outlining the overall structure of the app.
+- **3.5 hours**: Coding and implementing the features. This involved setting up the Retrofit client, creating the `ViewModel` and repository, implementing caching logic, building the UI, and writing unit tests.
